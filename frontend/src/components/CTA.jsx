@@ -1,25 +1,35 @@
-import { ArrowRight } from 'lucide-react'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
 const CTA = () => {
   return (
-   <div className=" px-6 py-8 flex flex-col items-center justify-between gap-4 mt-5 bg-slate-950 max-w-[90%] ">
+    <section className="w-[90%] max-w-5xl mx-auto mt-8 mb-8 px-5 py-12 sm:px-10 bg-slate-900 border border-slate-800 rounded-2xl text-center">
 
+      <p className="text-sm text-indigo-400 font-medium">
+        START TODAY
+      </p>
 
-         <h1 className="text-center text-2xl leading-tight md:text-4xl mt-3 font-semibold px-4">
-           Ready to take control of your money?
-        </h1>
-          <div className='flex ml-15 max-w-[80%] flex-col '>
-            <p className='text-center text-sm text-slate-200 '>SpendWise provides you services to manage your expenses smartly and track your expenses. Get started with SpendWise to keep your profit/loss track. Start managing your money smarter with SpendWise.</p>
-            </div>
+      <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight">
+        Ready to take control of your money?
+      </h2>
 
-            <Link to="/register" className='mt-4'>
-          <button className='flex items-hover:shadow-[0px_0px_30px_14px] shadow-[0px_0px_30px_7px] hover:shadow-white/50 shadow-white/50 text-black bg-white hover:bg-slate-100 transition duration-300 rounded-full px-5 py-2 cursor-pointer'>Get Started <ArrowRight size={20}/>
-          </button>
-          </Link>
-       </div>
+      <p className="max-w-2xl mx-auto mt-4 text-sm sm:text-base leading-7 text-slate-400">
+        Manage your income, track your expenses, and understand your
+        spending habits with SpendWise.
+      </p>
 
-  )
-}
+      <Link
+        to="/register"
+        className="inline-block mt-7"
+      >
+        <button className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-medium hover:bg-slate-200 transition shadow-[0_0_25px_4px] shadow-white/20">
+          Get Started
+          <ArrowRight size={19} />
+        </button>
+      </Link>
 
-export default CTA
+    </section>
+  );
+};
+
+export default CTA;

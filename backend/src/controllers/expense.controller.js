@@ -29,11 +29,8 @@ const expenseModel = require("../models/expense.model");
     };
 
     if (category) {
-        filter.category = { 
-            $regex: `^${category}$`,
-            $options: "i"
-        }
-}
+        filter.category = category;
+    }
     if (type) {
         filter.type = type;
     }

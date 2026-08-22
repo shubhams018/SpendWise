@@ -1,20 +1,25 @@
-import React from 'react'
-
- const Card = ({ title, description, icon }) => {
-  
-
-
-
+const Card = ({ title, description, icon }) => {
   return (
-        <div className="p-4 bg-slate-900 border mb-10 border-gray-200 hover:-translate-y-1 transition duration-300 rounded-lg shadow shadow-black/10 max-w-90">
-            <p className="text-white text-xl font-semibold ml-2 mt-4 flex items-center gap-2">
-                <span className=''>{icon}</span> {title}
-            </p>
-            <p className="text-zinc-400 text-sm/6 mt-2 ml-2 mb-2">
-               {description}
-            </p>
-        </div>
-  )
-}
+    <div className="group p-6 bg-slate-900 border border-slate-800 rounded-xl hover:border-slate-600 hover:-translate-y-1 transition-all duration-300">
 
-export default Card
+      <div className="flex items-center gap-3">
+
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-800 text-indigo-400">
+          {icon}
+        </div>
+
+        <h3 className="text-lg font-semibold text-white">
+          {title}
+        </h3>
+
+      </div>
+
+      <p className="text-sm leading-6 text-slate-400 mt-4">
+        {description}
+      </p>
+
+    </div>
+  );
+};
+
+export default Card;

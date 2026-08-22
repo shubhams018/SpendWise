@@ -1,142 +1,180 @@
-import React, { useState } from 'react'
-import axios from 'axios';
-import { addExpenses } from '../services/expense.service';
-import { useNavigate } from 'react-router-dom';
-
+import { useState } from "react";
+import { addExpenses } from "../services/expense.service";
+import { useNavigate } from "react-router-dom";
 
 const AddExpense = () => {
-
     const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
-    title: "",
-    amount: "",
-    category: "",
-    type: "",
-    date: ""
-  });
+        title: "",
+        amount: "",
+        category: "",
+        type: "",
+        date: ""
+    });
+
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
-    setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-    });
-   };
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    const response =  await addExpenses(formData);
-    navigate('/dashboard')
 
-   };
+        try {
+            setError("");
+            setLoading(true);
 
+            await addExpenses(formData);
 
+            navigate("/dashboard");
+        } catch (error) {
+            const errors = error.response?.data?.errors;
 
+            if (errors && errors.length > 0) {
+                setError(errors[0].msg);
+            } else {
+                setError(
+                    error.response?.data?.error ||
+                    "Failed to add expense"
+                );
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  return (
-        <div className="min-h-screen flex items-center justify-center">
-    <div className="flex flex-col justify-center w-full max-w-80 rounded-xl px-6 py-8 border border-slate-700 bg-slate-900 text-white text-sm">
-    <h2 className="text-2xl font-semibold">Add Expense</h2>
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-slate-950 px-4 py-8">
 
-    <form className="mt-8" onSubmit={handleSubmit}>
+            <div className="w-full max-w-md rounded-xl px-6 py-6 border border-slate-700 bg-slate-900 text-white text-sm">
 
-        <label
-            htmlFor="Title"
-            className="block mb-1 font-medium text-slate-300"
-        >
-           Title
-        </label>
+                <h2 className="text-2xl text-center font-semibold">
+                    Add Expense
+                </h2>
 
-        <input
-            type="text"
-            id="Title"
-            name="title"
-            placeholder="Title"
-            value={formData.title}
-            onChange={handleChange}
-            className="w-full p-2 mb-4 bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 transition focus:ring-indigo-500 focus:border-indigo-500"
-        />
+                {error && (
+                    <p className="mt-4 text-sm text-red-400 text-center">
+                        {error}
+                    </p>
+                )}
 
-         <label
-            htmlFor="amount"
-            className="block mb-1 font-medium text-slate-300"
-        >
-            Amount
-        </label>
+                <form className="mt-8" onSubmit={handleSubmit}>
 
-        <input
-            type="number"
-            min={1}
-            id="Amount"
-            name="amount"
-            placeholder="Amount"
-            value={formData.amount}
-            onChange={handleChange}
-            className="w-full p-2 mb-4 bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 transition focus:ring-indigo-500 focus:border-indigo-500"
-        />
+                    {/* Title */}
+                    <label
+                        htmlFor="title"
+                        className="block mb-1 font-medium text-slate-300"
+                    >
+                        Title
+                    </label>
 
-         <label
-            htmlFor="Category"
-            className="block mb-1 font-medium text-slate-300"
-        >
-           Category
-        </label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        className="w-full p-2 mb-4 bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    />
 
-        <input
-            type="text"
-            id="Category"
-            name="category"
-            placeholder="Category"
-            value={formData.category}
-            onChange={handleChange}
-            className="w-full p-2 mb-4 bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 transition focus:ring-indigo-500 focus:border-indigo-500"
-        />
+                    {/* Amount */}
+                    <label
+                        htmlFor="amount"
+                        className="block mb-1 font-medium text-slate-300"
+                    >
+                        Amount
+                    </label>
 
-         <label
-            htmlFor="Type"
-            className="block mb-1 font-medium text-slate-300"
-        >
-            Type
-        </label>
+                    <input
+                        type="number"
+                        min="1"
+                        id="amount"
+                        name="amount"
+                        placeholder="Amount"
+                        value={formData.amount}
+                        onChange={handleChange}
+                        className="w-full p-2 mb-4 bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    />
 
-        <input
-            type="text"
-            id="Type"
-            name="type"
-            placeholder="Type"
-            value={formData.type}
-            onChange={handleChange}
-            className="w-full p-2 mb-4 bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 transition focus:ring-indigo-500 focus:border-indigo-500"
-        />
+                    {/* Category */}
+                    <label
+                        htmlFor="category"
+                        className="block mb-1 font-medium text-slate-300"
+                    >
+                        Category
+                    </label>
 
-        <label
-            htmlFor="Type"
-            className="block mb-1 font-medium text-slate-300"
-        >
-            Date
-        </label>
+                    <select
+                        id="category"
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        className="w-full p-2 mb-4 cursor-pointer bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    >
+                        <option value="">Select category</option>
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Other">Other</option>
+                    </select>
 
-        <input
-            type="Date"
-            id="Date"
-            name="date"
-            placeholder="Date"
-            value={formData.date}
-            onChange={handleChange}
-            className="w-full p-2 mb-4 bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 transition focus:ring-indigo-500 focus:border-indigo-500"
-        />
+                    {/* Type */}
+                    <label
+                        htmlFor="type"
+                        className="block mb-1 font-medium text-slate-300"
+                    >
+                        Type
+                    </label>
 
-        <button
-            type="submit"
-            className="w-full mt-8 px-4 py-2.5 font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        >
-            Add
-        </button>
+                    <select
+                        id="type"
+                        name="type"
+                        value={formData.type}
+                        onChange={handleChange}
+                        className="w-full p-2 mb-4 cursor-pointer bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    >
+                        <option value="">Select type</option>
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
 
+                    {/* Date */}
+                    <label
+                        htmlFor="date"
+                        className="block mb-1 font-medium text-slate-300"
+                    >
+                        Date
+                    </label>
 
-    </form>
-</div>
-</div>
-  )
-}
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                        value={formData.date}
+                        onChange={handleChange}
+                        className="w-full p-2 mb-4 cursor-pointer bg-slate-900 border border-slate-700 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    />
 
-export default AddExpense
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full rounded-md bg-indigo-600 py-2.5 font-medium transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                        {loading ? "Adding..." : "Add"}
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export default AddExpense;

@@ -37,4 +37,16 @@ const response = await axios.get(
 return response;
 }
 
-export  {loginUser, registerUser, getCurrentUser};
+async function logoutUser() {
+const response = await axios.post(
+        "http://localhost:3000/api/auth/logout",
+        {},
+    {
+        withCredentials: true
+    }
+);
+
+return response;
+}
+
+export  {loginUser, registerUser, getCurrentUser, logoutUser};

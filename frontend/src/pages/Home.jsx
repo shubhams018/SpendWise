@@ -1,5 +1,3 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Card from '../components/Card'
 import { Receipt, ChartNoAxesCombined, ListFilter } from 'lucide-react';
@@ -37,7 +35,6 @@ const Home = () => {
   return (
      
    <div className="min-h-screen bg-slate-950 text-white p-2">
-     <Navbar/>
       <Hero/>
        <div className="flex flex-wrap justify-center gap-8 mt-12">         
           {
@@ -51,7 +48,6 @@ const Home = () => {
            ))
          }
         </div>
-        
         <HowItWorks/>
         <CTA/>
         <Footer/>

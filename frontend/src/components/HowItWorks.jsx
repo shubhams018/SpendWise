@@ -1,37 +1,71 @@
-import React from 'react'
-
 const HowItWorks = () => {
+  const steps = [
+    {
+      number: "01",
+      title: "Add your transactions",
+      description:
+        "Add your income and expenses with details like amount, category, type, and date.",
+    },
+    {
+      number: "02",
+      title: "Track your money",
+      description:
+        "SpendWise calculates your income, expenses, and balance and displays them clearly on your dashboard.",
+    },
+    {
+      number: "03",
+      title: "Understand your spending",
+      description:
+        "Filter transactions by category and date, sort them, and manage individual expenses easily.",
+    },
+  ];
 
   return (
+    <section className="w-[90%] max-w-6xl mx-auto mt-8 px-5 py-10 sm:px-8 bg-slate-900 border border-slate-800 rounded-2xl">
 
-    <div className=" px-3 py-5 mx-auto mt-5 bg-slate-900 border border-gray-200 rounded-lg shadow shadow-black/10 max-w-[90%] ">
+      <div className="text-center max-w-2xl mx-auto">
 
-         <h1 className="text-center text-2xl leading-tight md:text-4xl mt-3 font-bold  px-4">
-           Why SpendWise ?
-        </h1>
-        <div className='flex flex-col gap-2'>
-        
-        <div className='flex flex-col items-start gap-2'>
-            <h2 className='text-center text-xl leading-tight md:text-2xl mt-3 font-semibold  px-4'>1. Add your transactions</h2>
-             <p className="px-4 text-white text-sm font-light flex items-center gap-2">Users add their income and expenses with details like amount, category, type, and date.</p>
-        </div>
+        <p className="text-sm text-indigo-400 font-medium">
+          HOW IT WORKS
+        </p>
 
-        <div className='flex flex-col items-start gap-2'>
-            <h2 className='text-center text-xl leading-tight md:text-2xl mt-3 font-semibold  px-4'>2. Track your money</h2>
-             <p className="px-4 text-white text-sm font-light flex items-center gap-2">SpendWise calculates income, expenses, and balance and displays them on the dashboard.</p>
-        </div>
+        <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-semibold">
+          Why SpendWise?
+        </h2>
 
-        <div className='flex flex-col items-start gap-2'>
-            <h2 className='text-center text-xl leading-tight md:text-2xl mt-3 font-semibold  px-4'>3. Understand your spending</h2>
-             <p className="px-4 text-white text-sm font-light flex items-center gap-2">Users can filter by category/date, sort transactions, and manage individual expenses.</p>
-        </div>
-        </div>
-    </div>
+        <p className="mt-3 text-sm sm:text-base text-slate-400">
+          Everything you need to keep track of your money in one simple place.
+        </p>
 
- 
-  
+      </div>
 
-  )
-}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
 
-export default HowItWorks
+        {steps.map((step) => (
+          <div
+            key={step.number}
+            className="p-6 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-600 transition"
+          >
+
+            <span className="text-sm text-indigo-400 font-semibold">
+              {step.number}
+            </span>
+
+            <h3 className="text-lg font-semibold mt-4">
+              {step.title}
+            </h3>
+
+            <p className="text-sm leading-6 text-slate-400 mt-3">
+              {step.description}
+            </p>
+
+          </div>
+        ))}
+
+      </div>
+
+    </section>
+  );
+};
+
+export default HowItWorks;

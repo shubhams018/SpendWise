@@ -1,44 +1,67 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
 const Hero = () => {
-
-  const navigate =  useNavigate();
   return (
-    
-    <section className="relative flex flex-col items-center  bg-slate-950 text-white text-sm pb-8 ">
+    <section className="bg-slate-950 text-white px-4 pt-20 pb-16 sm:pt-24 sm:pb-20">
+      
+      <div className="max-w-4xl mx-auto text-center">
 
-        <Link to ="/register" className="flex items-center gap-2 rounded-full bg-green-950 p-2 mt-20">
-          <span className="bg-green-600 text-xs px-3 py-1 rounded-full">
+        {/* Badge */}
+        <Link
+          to="/register"
+          className="inline-flex items-center gap-2 rounded-full border border-green-800 bg-green-950/50 px-3 py-1.5 hover:border-green-600 transition"
+        >
+          <span className="bg-green-600 text-xs px-2.5 py-1 rounded-full">
             NEW
           </span>
-          <div className="flex items-center text-green-600 text-md">
-            <span className='flex items-center'>Start with SpendWise now <ArrowRight className='pt-0.5 ml-0.5' size={16}/>
-            </span>
-          </div>
+
+          <span className="text-sm text-green-400 flex items-center gap-1">
+            Start with SpendWise
+            <ArrowRight size={15} />
+          </span>
         </Link>
 
-        <h1 className="text-center text-4xl leading-tight md:text-6xl mt-3 font-semibold  px-4">
-           Take control of your money
+        {/* Heading */}
+        <h1 className="mt-7 text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-tight">
+          Take control of your{" "}
+          <span className="text-slate-400">money</span>
         </h1>
-        <p className="text-center text-sm md:text-base/7 text-slate-200 max-w-md mt-2 px-4">
-           Track your spending. Know your balance.
-        </p>
-        
-        <div className="flex items-center gap-4 mt-8">
-          <Link to="/register">
-          <button className='flex items-center gap-1 justify-between text-md font-semibold border border-slate-600 hover:bg-slate-800 rounded-full px-5 py-2 cursor-pointer'>Get Started <ArrowRight size={20}/>
-          </button>
-          </Link>
-          
-          <Link to="/login">
-          <button className='flex text-md font-semibold hover:shadow-[0px_0px_30px_14px] shadow-[0px_0px_30px_7px] hover:shadow-white/50 shadow-white/50 text-black bg-white hover:bg-slate-100 transition duration-300 rounded-full px-5 py-2 cursor-pointer'>Login 
-          </button>
-          </Link>
-        </div>
-      </section>
-  
-  )
-}
 
-export default Hero
+        {/* Description */}
+        <p className="max-w-xl mx-auto mt-5 text-sm sm:text-base leading-7 text-slate-400">
+          Track your spending, understand your financial habits,
+          and keep your income and expenses organized with SpendWise.
+        </p>
+
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+
+          <Link
+            to="/register"
+            className="w-full sm:w-auto"
+          >
+            <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-medium hover:bg-slate-200 transition">
+              Get Started
+              <ArrowRight size={19} />
+            </button>
+          </Link>
+
+          <Link
+            to="/login"
+            className="w-full sm:w-auto"
+          >
+            <button className="w-full sm:w-auto px-6 py-2.5 rounded-full border border-slate-700 text-white font-medium hover:bg-slate-900 transition">
+              Login
+            </button>
+          </Link>
+
+        </div>
+
+      </div>
+
+    </section>
+  );
+};
+
+export default Hero;
