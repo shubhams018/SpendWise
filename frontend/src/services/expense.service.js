@@ -2,7 +2,7 @@ import axios from "axios";
 
     async function getSummary() {
     const response = await axios.get(
-        "http://localhost:3000/api/expense/summary",
+        "https://spendwise-cngo.onrender.com/api/expense/summary",
         {
             withCredentials: true
         }
@@ -35,7 +35,7 @@ import axios from "axios";
                 }
 
     const response = await axios.get(
-        "http://localhost:3000/api/expense",
+        "https://spendwise-cngo.onrender.com/api/expense",
         
         {
             params,
@@ -49,7 +49,7 @@ import axios from "axios";
 
     async function addExpenses(formData) {
          const response = await axios.post(
-        "http://localhost:3000/api/expense/",
+        "https://spendwise-cngo.onrender.com/api/expense/",
         formData,
         {
             withCredentials: true
@@ -63,7 +63,7 @@ import axios from "axios";
 
     async function deleteExpenses(id) {
     const response = await axios.delete(
-        `http://localhost:3000/api/expense/${id}`,
+        `https://spendwise-cngo.onrender.com/api/expense/${id}`,
         {
             withCredentials: true
         }
@@ -74,7 +74,7 @@ import axios from "axios";
 
    async function updateExpenses(id,formData) {
     const response = await axios.patch(
-        `http://localhost:3000/api/expense/${id}`,
+        `https://spendwise-cngo.onrender.com/api/expense/${id}`,
         
         formData,
         {
@@ -88,7 +88,7 @@ import axios from "axios";
    async function getExpense(id) {
     
     const response = await axios.get(
-        `http://localhost:3000/api/expense/${id}`,
+        `https://spendwise-cngo.onrender.com/api/expense/${id}`,
         {
             withCredentials: true
         }

@@ -3,7 +3,7 @@ import axios from "axios";
 async function loginUser(formData) {
     
      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        "https://spendwise-cngo.onrender.com/api/auth/login",
         formData,
         {
             withCredentials: true
@@ -17,7 +17,7 @@ async function loginUser(formData) {
 async function registerUser(formData) {
     
      const response = await axios.post(
-        "http://localhost:3000/api/auth/register",
+        "https://spendwise-cngo.onrender.com/api/auth/register",
         formData
     );
 
@@ -28,7 +28,7 @@ async function registerUser(formData) {
 
 async function getCurrentUser() {
 const response = await axios.get(
-    "http://localhost:3000/api/user/me",
+    "https://spendwise-cngo.onrender.com/api/user/me",
     {
         withCredentials: true
     }
@@ -39,7 +39,7 @@ return response;
 
 async function logoutUser() {
 const response = await axios.post(
-        "http://localhost:3000/api/auth/logout",
+        "https://spendwise-cngo.onrender.com/api/auth/logout",
         {},
     {
         withCredentials: true
