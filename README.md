@@ -6,7 +6,7 @@ A full-stack expense management application that helps users track income and ex
 
 **Frontend:** https://spendwise-frontend-7l33.onrender.com
 
-**Backend:** Your deployed Render backend URL
+**Backend:** https://spendwise-cngo.onrender.com
 
 ## GitHub
 
